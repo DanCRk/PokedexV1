@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FFBB86FC</color>
+    <color name="purple_500">#FF6200EE</color>
+    <color name="purple_700">#FF3700B3</color>
+    <color name="teal_200">#FF03DAC5</color>
+    <color name="teal_700">#FF018786</color>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+    // Colores Principales Day
+    <color name="principal">#ffebee</color>
+    <color name="principal_dark">#ccb9bc</color>
+    <color name="principal_claro">#ffffff</color>
+    // Colores Secundarios Day
+    <color name="secundario">#ff8a80</color>
+    <color name="secundario_dark">#c85a54</color>
+    <color name="secundario_claro">#ffbcaf</color>
+
+    // Colores para texto
+    <color name="color_texto">#2B2B2B</color>
+
+    <color name="splash">#ff8a80</color>
+
+
+    <color name="transparent">#00FFFFFF</color>
+</resources>

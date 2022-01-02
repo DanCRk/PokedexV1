@@ -16,27 +16,18 @@ import javax.inject.Inject
 @HiltViewModel
 class PokemonViewModel @Inject constructor(
     //Injeccion de dependencias
-    private val getoPokemonsUseCase: GetPokemonsUseCase,
-    private val getSpritesUseCase: GetSpritesUseCase,
-    private var repository : Repository
+    private val getoPokemonsUseCase: GetPokemonsUseCase
 ) : ViewModel() {
 
     val pokemonModel = MutableLiveData<List<PokemonModel>>()
-    val pokemonDetails = MutableLiveData<PokemonSprites>()
 
     //llamada al caso de uso para almacenar en memoria todos los pokemon
     fun onCreate(nuevo:Int) {
         viewModelScope.launch {
             val result = getoPokemonsUseCase("pokemon?limit=20&offset=$nuevo")
-            val details = getSpritesUseCase("pokemon/1")
             if (!result.isNullOrEmpty()){
-/*                repository.listAllPokemons.addAll(result)*/
-                pokemonDetails.postValue(details)
                 pokemonModel.postValue(result)
             }
         }
     }
-
-
-
 }

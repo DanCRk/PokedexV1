@@ -14,7 +14,6 @@ class ViewHolder (val view: View):RecyclerView.ViewHolder(view){
 
     val binding = ItemBinding.bind(view)
 
-
     @SuppressLint("SetTextI18n")
     fun bind(Pkmn: PokemonModel, context:Context){
         val urlPartes :List<String> = Pkmn.url.split("/")

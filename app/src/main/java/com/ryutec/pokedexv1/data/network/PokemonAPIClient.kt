@@ -10,6 +10,4 @@ interface PokemonAPIClient {
     @GET
     suspend fun getAllPokemon(@Url url:String):Response<PokemonResponse>
 
-    @GET
-    suspend fun getDetails(@Url url:String): Response<PokemonDetails>
 }

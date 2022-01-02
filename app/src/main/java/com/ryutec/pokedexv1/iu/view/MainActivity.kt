@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.ryutec.pokedexv1.data.model.pokemon.PokemonModel
@@ -21,27 +20,25 @@ class MainActivity : AppCompatActivity() {
     private val pokemonViewModel:PokemonViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: RecyclerAdapter
-    private lateinit var listaPokemon:MutableList<PokemonModel>
+    private val listaPokemon = mutableListOf<PokemonModel>()
     var offset:Int= 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        setUpRecyclerView()
+
         //obtener la lista de pokemon
         pokemonViewModel.onCreate(offset)
         pokemonViewModel.pokemonModel.observe(this, {
-            setUpRecyclerView(it)
-
-            //refrescarRecyclerView()
+            if (!it.isNullOrEmpty()){
+                listaPokemon.addAll(it)
+                refrescarRecyclerView()
+            }
         })
-
-
-       // pokemonViewModel.details()
-        pokemonViewModel.pokemonDetails.observe(this, {
-        })
-
-        //cargarMas()
+        cargarMas()
     }
 
     private fun cargarMas(){
@@ -56,15 +53,11 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun setUpRecyclerView(list:List<PokemonModel>){
-        adapter = RecyclerAdapter(list, this)
+    private fun setUpRecyclerView(){
+        adapter = RecyclerAdapter(listaPokemon, this)
         binding.recycler.layoutManager = GridLayoutManager(this,2)
         binding.recycler.adapter = adapter
-        if (!list.isNullOrEmpty()){
-
-        }else{
-            showError()
-        }
+        adapter.notifyDataSetChanged()
 
     }
 

@@ -19,13 +19,4 @@ class Repository @Inject constructor(private val api : PokemonService, private v
         //Devolvemos la lista de pokemon
         return response
     }
-
-    suspend fun getDetails(url:String): PokemonDetails {
-        //Pedimos la lista de pokemons
-        val response = api.getDettails(url)
-        //La guardamos en el provider
-        pokemonProvider.details= response
-        //Devolvemos la lista de pokemon
-        return response
-    }
 }

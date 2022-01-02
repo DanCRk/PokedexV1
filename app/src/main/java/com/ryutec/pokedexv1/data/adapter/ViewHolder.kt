@@ -17,6 +17,7 @@ class ViewHolder (val view: View):RecyclerView.ViewHolder(view){
     fun bind(Pkmn: PokemonModel, context:Context){
         val urlPartes :List<String> = Pkmn.url.split("/")
         val numero: String = urlPartes[6]
+
         binding.nombrePokemon.text = Pkmn.name
         if (numero<= 9.toString()){
             binding.numeroPokemon.text = "N.°00$numero"

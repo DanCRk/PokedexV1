@@ -29,7 +29,7 @@ class ViewHolder (val view: View):RecyclerView.ViewHolder(view){
         view.setOnClickListener{
             var intent = Intent(context, SplashActivity::class.java)
             intent.putExtra("detalles", Pkmn.url)
-            context.startActivity(intent)
+            //context.startActivity(intent)
         }
     }
 }

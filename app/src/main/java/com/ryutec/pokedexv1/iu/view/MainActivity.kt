@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
     private val pokemonViewModel:PokemonViewModel by viewModels()
     private lateinit var binding: ActivityMainBinding
     private lateinit var adapter: RecyclerAdapter
-    private var listaPokemon = emptyList<PokemonModel>()
+    private lateinit var listaPokemon:MutableList<PokemonModel>
     var offset:Int= 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -30,16 +30,18 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         //obtener la lista de pokemon
         pokemonViewModel.onCreate(offset)
-        cargarMas()
         pokemonViewModel.pokemonModel.observe(this, {
-            listaPokemon.addAll(it)
-            refrescarRecyclerView()
+            setUpRecyclerView(it)
+
+            //refrescarRecyclerView()
         })
 
-        pokemonViewModel.pokemonDetails.observe(this, Observer {
-            binding.textView.text = it[0].type[0].name
+
+       // pokemonViewModel.details()
+        pokemonViewModel.pokemonDetails.observe(this, {
         })
-        setUpRecyclerView()
+
+        //cargarMas()
     }
 
     private fun cargarMas(){
@@ -54,10 +56,16 @@ class MainActivity : AppCompatActivity() {
         })
     }
 
-    private fun setUpRecyclerView(){
-        adapter = RecyclerAdapter(listaPokemon, this)
+    private fun setUpRecyclerView(list:List<PokemonModel>){
+        adapter = RecyclerAdapter(list, this)
         binding.recycler.layoutManager = GridLayoutManager(this,2)
         binding.recycler.adapter = adapter
+        if (!list.isNullOrEmpty()){
+
+        }else{
+            showError()
+        }
+
     }
 
     private fun refrescarRecyclerView(){ if(!listaPokemon.isNullOrEmpty()){ adapter.notifyDataSetChanged() }else{ showError() } }

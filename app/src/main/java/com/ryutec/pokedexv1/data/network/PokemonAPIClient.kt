@@ -7,7 +7,9 @@ import retrofit2.http.GET
 import retrofit2.http.Url
 
 interface PokemonAPIClient {
-    @GET("pokemon")
+    @GET
     suspend fun getAllPokemon(@Url url:String):Response<PokemonResponse>
+
+    @GET
     suspend fun getDetails(@Url url:String): Response<PokemonDetails>
 }

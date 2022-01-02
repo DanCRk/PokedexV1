@@ -22,19 +22,25 @@ class PokemonViewModel @Inject constructor(
 ) : ViewModel() {
 
     val pokemonModel = MutableLiveData<List<PokemonModel>>()
-    val pokemonDetails = MutableLiveData<List<Types>>()
+    val pokemonDetails = MutableLiveData<List<PokemonModel>>()
 
     //llamada al caso de uso para almacenar en memoria todos los pokemon
     fun onCreate(nuevo:Int) {
         viewModelScope.launch {
-            val result = getoPokemonsUseCase("?limit=20&offset=$nuevo")
-            val details = getTypesUseCase("/1/")
+            val result = getoPokemonsUseCase("pokemon?limit=20&offset=$nuevo")
             if (!result.isNullOrEmpty()){
-                repository.listAllPokemons.addAll(result)
+/*                repository.listAllPokemons.addAll(result)*/
                 pokemonModel.postValue(result)
             }
+        }
+    }
+
+    fun details(){
+        viewModelScope.launch {
+            val details = getoPokemonsUseCase("pokemon/1")
             if (!details.isNullOrEmpty()){
-                pokemonDetails.postValue(details)
+/*                repository.listAllPokemons.addAll(result)*/
+                pokemonModel.postValue(details)
             }
         }
     }

@@ -1,19 +1,21 @@
 package com.ryutec.prueba
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.ryutec.pokedexv1.SplashActivity
 import com.ryutec.pokedexv1.data.model.pokemon.PokemonModel
 import com.ryutec.pokedexv1.databinding.ItemBinding
+import com.ryutec.pokedexv1.iu.view.DetailsActivity
 
 class ViewHolder (val view: View):RecyclerView.ViewHolder(view){
 
     val binding = ItemBinding.bind(view)
 
 
+    @SuppressLint("SetTextI18n")
     fun bind(Pkmn: PokemonModel, context:Context){
         val urlPartes :List<String> = Pkmn.url.split("/")
         val numero: String = urlPartes[6]
@@ -28,9 +30,9 @@ class ViewHolder (val view: View):RecyclerView.ViewHolder(view){
         }
         Glide.with(context).load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$numero.png").into(binding.imgPokemon)
         view.setOnClickListener{
-            var intent = Intent(context, SplashActivity::class.java)
+            val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra("detalles", Pkmn.url)
-            //context.startActivity(intent)
+            context.startActivity(intent)
         }
     }
 }

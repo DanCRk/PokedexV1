@@ -34,7 +34,11 @@ class MainActivity : AppCompatActivity() {
         pokemonViewModel.onCreate(offset)
         pokemonViewModel.pokemonModel.observe(this, {
             if (!it.isNullOrEmpty()){
-                listaPokemon.addAll(it)
+                for (pok in it){
+                    if (!listaPokemon.contains(pok)){
+                        listaPokemon.add(pok)
+                    }
+                }
                 refrescarRecyclerView()
             }
         })

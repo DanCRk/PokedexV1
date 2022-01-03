@@ -1,4 +1,4 @@
-package com.ryutec.prueba
+package com.ryutec.pokedexv1.data.adapter.recycler
 
 import android.content.Context
 import android.view.LayoutInflater

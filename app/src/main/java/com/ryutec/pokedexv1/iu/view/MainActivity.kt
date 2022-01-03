@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ryutec.pokedexv1.data.model.pokemon.PokemonModel
 import com.ryutec.pokedexv1.databinding.ActivityMainBinding
 import com.ryutec.pokedexv1.iu.viewmodel.PokemonViewModel
-import com.ryutec.prueba.RecyclerAdapter
+import com.ryutec.pokedexv1.data.adapter.recycler.RecyclerAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @SuppressLint("NotifyDataSetChanged")

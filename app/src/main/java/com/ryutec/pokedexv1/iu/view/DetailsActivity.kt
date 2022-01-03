@@ -1,5 +1,6 @@
 package com.ryutec.pokedexv1.iu.view
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
@@ -67,11 +68,12 @@ class DetailsActivity : AppCompatActivity() {
         compositePagerTransformer.addTransformer(MarginPageTransformer(30))
         compositePagerTransformer.addTransformer{page, position ->
             val r = 1 - abs(position)
-            page.scaleY = 0.85f + r*0.25f
+            page.scaleY = 0.85f + r * 0.25f
         }
         binding.sliderSprites.setPageTransformer(compositePagerTransformer)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     private fun refrescar(){ if(!sliderItems.isNullOrEmpty()){ adapter.notifyDataSetChanged() }else{ showError() } }
 
     private fun showError(){ Toast.makeText(this, "Ha ocurrido un error", Toast.LENGTH_SHORT).show() }

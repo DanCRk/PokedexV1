@@ -20,9 +20,9 @@ class ViewHolder (val view: View):RecyclerView.ViewHolder(view){
         val numero: String = urlPartes[6]
 
         binding.nombrePokemon.text = Pkmn.name
-        if (numero<= 9.toString()){
+        if (numero.toInt()<= 9){
             binding.numeroPokemon.text = "N.°00$numero"
-        }else  if(numero<=99.toString()){
+        }else  if(numero.toInt()<=99){
             binding.numeroPokemon.text = "N.°0$numero"
         }else {
             binding.numeroPokemon.text = "N.°$numero"

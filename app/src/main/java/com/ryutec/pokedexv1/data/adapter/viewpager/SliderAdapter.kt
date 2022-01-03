@@ -25,7 +25,10 @@ class SliderAdapter internal constructor(
 
         fun image(sliderItem: String){
             //imageView.setImageResource(sliderItem.image)
-            Glide.with(itemView.context).load(sliderItem).into(imageView)
+            Glide.with(itemView.context)
+                .load(sliderItem)
+                .placeholder(R.drawable.icon)
+                .into(imageView)
         }
     }
 

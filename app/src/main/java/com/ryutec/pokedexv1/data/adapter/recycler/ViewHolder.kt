@@ -27,7 +27,10 @@ class ViewHolder (val view: View):RecyclerView.ViewHolder(view){
         }else {
             binding.numeroPokemon.text = "N.°$numero"
         }
-        Glide.with(context).load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$numero.png").into(binding.imgPokemon)
+        Glide.with(context)
+            .load("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/$numero.png")
+            .centerCrop()
+            .into(binding.imgPokemon)
         view.setOnClickListener{
             val intent = Intent(context, DetailsActivity::class.java)
             intent.putExtra("numero", numero)

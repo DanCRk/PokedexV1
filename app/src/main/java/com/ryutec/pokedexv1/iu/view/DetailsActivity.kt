@@ -31,11 +31,13 @@ class DetailsActivity : AppCompatActivity() {
         setUpViewPager()
 
         pokemonViewModel.pokemonSprites.observe(this, {
-            sliderItems.add(it.front_default)
-            sliderItems.add(it.back_default)
-            sliderItems.add(it.front_shiny)
-            sliderItems.add(it.back_shiny)
-            refrescar()
+            if (!it.equals(null)){
+                sliderItems.add(it.front_default)
+                sliderItems.add(it.back_default)
+                sliderItems.add(it.front_shiny)
+                sliderItems.add(it.back_shiny)
+                refrescar()
+            }
         })
 
         pokemonViewModel.pokemonTypes.observe(this,{

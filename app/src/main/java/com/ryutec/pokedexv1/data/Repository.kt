@@ -9,8 +9,6 @@ import javax.inject.Inject
 
 class Repository @Inject constructor(private val api : PokemonService, private val pokemonProvider: PokemonProvider) {
 
-    public var listAllPokemons:MutableList<PokemonModel> = emptyList<PokemonModel>().toMutableList()
-
     suspend fun getAllPokemons(url:String): PokemonResponse {
         //Pedimos la lista de pokemons
         val response = api.getPokemon(url)
